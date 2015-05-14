@@ -1,0 +1,6 @@
+USAGE: java -jar crawling.jar -option arg1 [arg2]
+
+Options:
+	-f <path>			File
+	-w <URL> <depth> 		Web
+	-g <username> <password>	Gmail
