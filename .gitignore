@@ -1,4 +1,17 @@
+# Mac Files
+.DS_Store
+
+# Java class files
 *.class
+
+# generated files
+bin/
+target/
+
+# Eclipse project files
+.classpath
+.project
+.settings
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
