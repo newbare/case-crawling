@@ -1,5 +1,6 @@
-package com.cortexintelligence.crawling;
+package br.com.newbare.crawling.service;
 
+import java.io.File;
 import java.util.Properties;
 
 import javax.mail.BodyPart;
@@ -9,13 +10,13 @@ import javax.mail.Multipart;
 import javax.mail.Session;
 import javax.mail.Store;
 
-public class CrawlingGmail {
+public class ColetorDeEmail implements IColetor{
 
-	public CrawlingGmail(String username, String password) {
-		process(username, password);
+	public ColetorDeEmail(String username, String password) {
+		execute(username, password);
 	}
 
-	private void process(String username, String password) {
+	public void execute(String username, String password) {
 		
 		Properties props = new Properties();
 	    props.setProperty("mail.store.protocol", "imaps");
@@ -53,6 +54,18 @@ public class CrawlingGmail {
 	    } catch (Exception e) {
 	    	System.err.println(String.format("[ERROR] Error reading inbox: %s", username));
 	    }
+	}
+
+	@Override
+	public void execute(File file) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void execute(String url, int profundidade) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

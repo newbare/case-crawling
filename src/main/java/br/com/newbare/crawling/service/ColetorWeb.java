@@ -1,5 +1,6 @@
-package com.cortexintelligence.crawling;
+package br.com.newbare.crawling.service;
 
+import java.io.File;
 import java.io.IOException;
 
 import org.jsoup.Jsoup;
@@ -7,20 +8,20 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-public class CrawlingWeb {
+public class ColetorWeb implements IColetor{
 
 	private static int maxDepth;
 	
-	public CrawlingWeb(String url, String depth) {
+	public ColetorWeb(String url, String depth) {
 		try {
-			CrawlingWeb.maxDepth = new Integer(depth);
-			process(url, maxDepth);
+			ColetorWeb.maxDepth = new Integer(depth);
+			execute(url, maxDepth);
 		} catch (NumberFormatException e) {
 			System.err.println("[ERROR] Invalid argument, <depth> must be an integer.");
 		}
 	}
 	
-	private void process(String url, int depth) {
+	public void execute(String url, int depth) {
 		
 		try {
 			
@@ -36,7 +37,7 @@ public class CrawlingWeb {
 			if (depth > 0) {
 				Elements links = doc.select("a");
 				for (Element link: links) {
-					process(link.attr("href"), depth - 1);
+					execute(link.attr("href"), depth - 1);
 				}
 			}
 			
@@ -48,6 +49,18 @@ public class CrawlingWeb {
 		} catch (IOException e) {
 		}
 
+		
+	}
+
+	@Override
+	public void execute(File file) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void execute(String usuario, String senha) {
+		// TODO Auto-generated method stub
 		
 	}
 	

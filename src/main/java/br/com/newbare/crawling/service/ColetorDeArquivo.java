@@ -1,4 +1,4 @@
-package com.cortexintelligence.crawling;
+package br.com.newbare.crawling.service;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -11,24 +11,26 @@ import org.apache.tika.parser.ParseContext;
 import org.apache.tika.parser.Parser;
 import org.apache.tika.sax.BodyContentHandler;
 
-public class CrawlingFile {
+import br.com.newbare.crawling.util.Util;
 
-	public CrawlingFile(String path) {
+public class ColetorDeArquivo implements IColetor {
+
+	public ColetorDeArquivo(String path) {
 		
 		File file = new File(path);
 		
 		if (file.isFile()) {
-			process(file);
+			execute(file);
 		} else if (file.isDirectory() && file.listFiles() != null) {
 
 			for (File f: file.listFiles()) {
-				new CrawlingFile(f.getAbsolutePath());
+				new ColetorDeArquivo(f.getAbsolutePath());
 			}
 		}
 		
 	}
 	
-	private void process(File file) {
+	public void execute(File file) {
 				
 		System.out.println();
 		System.out.println(String.format(">>> %s <<<", file.getAbsolutePath()));
@@ -58,6 +60,19 @@ public class CrawlingFile {
 		} catch (Exception e) {
 			System.err.println(String.format("[ERROR] Error reading file '%s'.", file.getAbsolutePath()));
 		}
+	}
+
+
+	@Override
+	public void execute(String usuario, String senha) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void execute(String url, int profundidade) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

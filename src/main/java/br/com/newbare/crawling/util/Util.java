@@ -1,4 +1,4 @@
-package com.cortexintelligence.crawling;
+package br.com.newbare.crawling.util;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -27,4 +27,13 @@ public class Util {
 		reader.close();
 	}
 	
+	public static boolean isPossuiArgumentos(String[] args){
+		return args.length==0?false:true;
+	}
+	public static boolean isPossuiComandosValidos(String[] args){
+		if(args.length>0)
+			return !args[0].matches("-[fwg]")?true:false;
+		else
+			return true;
+	}
 }
